@@ -1,0 +1,16 @@
+Pagination:
+  type: object
+  config:
+    fields:
+      totalResults:
+        type: "Int"
+        description: "Total hits"
+      totalPages:
+        type: "Int"
+        description: "All pages count."
+      currentPage:
+        type: "Int"
+      nextPage:
+        type: "Int"
+      previousPage:
+        type: "Int"

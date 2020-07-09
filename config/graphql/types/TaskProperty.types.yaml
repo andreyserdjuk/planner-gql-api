@@ -1,0 +1,10 @@
+TaskProperty:
+  type: object
+  config:
+    fields:
+      id:
+        type: ID
+      type:
+        type: "String!"
+      content:
+        type: "String!"

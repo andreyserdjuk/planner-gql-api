@@ -1,0 +1,22 @@
+Task:
+  type: object
+  config:
+    fields:
+      id:
+        type: ID
+      title:
+        type: 'String!'
+      taskProperties:
+        type: '[TaskProperty]'
+      dateStart:
+        type: DateTime
+      dateEnd:
+        type: DateTime
+      createdAt:
+        type: DateTime
+      updatedAt:
+        type: DateTime
+      taskPriority:
+        type: TaskPriority
+      taskStatus:
+        type: TaskStatus

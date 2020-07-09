@@ -1,0 +1,24 @@
+Mutation:
+  type: object
+  config:
+    fields:
+      createTask:
+        type: ID!
+        resolve: "@=mutation('create_task', arguments({input: 'CreateTaskInput'}, args))"
+        args:
+          input:
+            type: CreateTaskInput!
+            validation: cascade
+      updateTask:
+        type: ID!
+        resolve: "@=mutation('update_task', arguments({input: 'UpdateTaskInput'}, args))"
+        args:
+          input:
+            type: UpdateTaskInput!
+            validation: cascade
+      deleteTask:
+        type: Boolean!
+        resolve: "@=mutation('delete_task', arguments({input: 'ID!'}, args))"
+        args:
+          input:
+            type: ID!

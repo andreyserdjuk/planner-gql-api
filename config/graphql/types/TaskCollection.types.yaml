@@ -1,0 +1,8 @@
+TaskCollection:
+  type: object
+  config:
+    fields:
+      paging:
+        type: "Pagination"
+      data:
+        type: "[Task]"

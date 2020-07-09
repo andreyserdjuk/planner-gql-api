@@ -1,0 +1,35 @@
+Query:
+  type: object
+  config:
+    fields:
+      tasks:
+        type: '[Task]'
+        resolve: "@=resolver('find_tasks', arguments({filter: '[TaskFilterInput]', sorting: '[TaskSortingInput]', limit: 'Int', page: 'Int'}, args))"
+        args:
+          filter:
+            type: '[TaskFilterInput]'
+            defaultValue: []
+          sorting:
+            type: '[TaskSortingInput]'
+            defaultValue:
+              -
+                by: createdAt
+                dir: DESC
+          limit:
+            type: Int
+            defaultValue: 10
+          page:
+            type: Int
+            defaultValue: 1
+      task:
+        type: Task
+        resolve: "@=resolver('find_task', [args['id']])"
+        args:
+          id:
+            type: ID
+      task_statuses:
+        type: '[TaskStatus]'
+        resolve: "@=resolver('find_task_statuses')"
+      task_priorities:
+        type: '[TaskPriority]'
+        resolve: "@=resolver('find_task_priorities')"
