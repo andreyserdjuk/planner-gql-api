@@ -1,2 +1,2 @@
 ### Planner GraphQL API server
-See planner-dev-env repo to setup.
+Local dev env see [planner-dev-env](https://github.com/andreyserdjuk/planner-dev-env) repo.
