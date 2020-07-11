@@ -1,0 +1,7 @@
+App\Entity\Task:
+  task{1..100}:
+    title: 'task number <current()>'
+    dateStart: '<dateTimeBetween("-3 days", "now")>'
+    dateEnd: '<dateTimeBetween("+1 days", "+5 days")>'
+    taskPriority: '@task_priority_*'
+    taskStatus: '@task_status_*'

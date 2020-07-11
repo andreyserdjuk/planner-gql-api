@@ -1,0 +1,7 @@
+App\Entity\TaskStatus:
+  task_status_scheduled:
+    name: 'scheduled'
+    label: 'scheduled'
+  task_status_done:
+    name: 'done'
+    label: 'done'

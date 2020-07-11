@@ -11,9 +11,9 @@ class TaskPriorityFixture extends Fixture
     public function load(ObjectManager $om)
     {
         $priorities = [
-            'high',
-            'normal',
             'low',
+            'normal',
+            'high',
         ];
 
         foreach ($priorities as $index => $priorityName) {

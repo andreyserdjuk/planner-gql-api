@@ -17,10 +17,10 @@ Query:
                 dir: DESC
           limit:
             type: Int
-            defaultValue: 10
+            defaultValue: 1000
           page:
             type: Int
-            defaultValue: 1
+            defaultValue: 0
       task:
         type: Task
         resolve: "@=resolver('find_task', [args['id']])"

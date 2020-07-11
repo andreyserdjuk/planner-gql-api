@@ -1,0 +1,13 @@
+App\Entity\TaskPriority:
+  task_priority_low:
+    name: 'low'
+    label: 'low'
+    order: 0
+  task_priority_normal:
+    name: 'normal'
+    label: 'normal'
+    order: 1
+  task_priority_high:
+    name: 'high'
+    label: 'high'
+    order: 2
