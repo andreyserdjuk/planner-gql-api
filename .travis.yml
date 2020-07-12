@@ -1,11 +1,19 @@
 language: php
 
+git:
+  depth: 1
+
 php:
   - '7.4'
 
 sudo: false
 
+before_install:
+  - if [[ $COVERAGE != true ]]; then phpenv config-rm xdebug.ini || true; fi
+
 install:
   - composer install
+  - ./vendor/bin/simple-phpunit install
 
-script: bin/phpunit
+script:
+  - ./vendor/bin/simple-phpunit
