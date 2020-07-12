@@ -1,5 +1,9 @@
 language: php
 
+os: linux
+
+dist: xenial
+
 git:
   depth: 1
 
@@ -11,8 +15,6 @@ php:
 env:
   global:
     - SYMFONY_DEPRECATIONS_HELPER=disabled
-
-sudo: false
 
 before_install:
   - if [[ $COVERAGE != true ]]; then phpenv config-rm xdebug.ini || true; fi
