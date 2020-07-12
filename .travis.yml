@@ -16,4 +16,4 @@ install:
   - ./vendor/bin/simple-phpunit install
 
 script:
-  - ./vendor/bin/simple-phpunit
+  - ./vendor/bin/simple-phpunit ./phpunit.xml
