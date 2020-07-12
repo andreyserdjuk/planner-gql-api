@@ -26,11 +26,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\GraphQL\Resolver\TaskResolver:
-        tags:
-            - { name: overblog_graphql.resolver, method: findTask, alias: find_task }
-            - { name: overblog_graphql.resolver, method: findTasks, alias: find_tasks }
-
     Doctrine\Persistence\ObjectManager: '@doctrine.orm.default_entity_manager'
 
     App\GraphQL\Type\TaskPriorityType:

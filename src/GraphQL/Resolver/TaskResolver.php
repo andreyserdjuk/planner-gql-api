@@ -6,8 +6,10 @@ use App\Core\Model\TaskInterface;
 use App\Core\Repository\TaskRepositoryInterface;
 use App\GraphQL\Type\TaskFilterInput;
 use App\GraphQL\Type\TaskSortingInput;
+use Overblog\GraphQLBundle\Definition\Resolver\AliasedInterface;
+use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
 
-class TaskResolver
+class TaskResolver implements ResolverInterface, AliasedInterface
 {
     protected TaskRepositoryInterface $repository;
 
@@ -37,5 +39,13 @@ class TaskResolver
         $offset = $page * $limit;
 
         return $this->repository->getPagedByCriteria($filtering, $sorting, $limit, $offset);
+    }
+
+    public static function getAliases(): array
+    {
+        return [
+            'findTask' => 'find_task',
+            'findTasks' => 'find_tasks',
+        ];
     }
 }
