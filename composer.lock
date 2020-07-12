@@ -1770,16 +1770,16 @@
         },
         {
             "name": "overblog/graphql-bundle",
-            "version": "v0.13.2",
+            "version": "v0.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overblog/GraphQLBundle.git",
-                "reference": "715546644fa8ad8e4c6ea6a759906b173c3f8512"
+                "reference": "59cac2139c51177cc17e57406430376ee0de6ab0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overblog/GraphQLBundle/zipball/715546644fa8ad8e4c6ea6a759906b173c3f8512",
-                "reference": "715546644fa8ad8e4c6ea6a759906b173c3f8512",
+                "url": "https://api.github.com/repos/overblog/GraphQLBundle/zipball/59cac2139c51177cc17e57406430376ee0de6ab0",
+                "reference": "59cac2139c51177cc17e57406430376ee0de6ab0",
                 "shasum": ""
             },
             "require": {
@@ -1849,7 +1849,7 @@
                 "Relay",
                 "graphql"
             ],
-            "time": "2020-03-10T13:35:28+00:00"
+            "time": "2020-07-08T14:03:39+00:00"
         },
         {
             "name": "psr/cache",
