@@ -16,4 +16,5 @@ install:
   - ./vendor/bin/simple-phpunit install
 
 script:
+  - ls -la # dunno why phpunit.xml not found
   - ./vendor/bin/simple-phpunit -c ./phpunit.xml
