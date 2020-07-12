@@ -1,0 +1,11 @@
+language: php
+
+php:
+  - '7.4'
+
+sudo: false
+
+install:
+  - composer install
+
+script: bin/phpunit
