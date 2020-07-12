@@ -7,6 +7,8 @@ use DateTime;
 
 class TaskCRUDTest extends BaseTestCase
 {
+    use AssertTaskProperties;
+
     public function testCreateTask()
     {
         $gql = <<<'GQL'
@@ -59,15 +61,6 @@ class TaskCRUDTest extends BaseTestCase
 
         $response = $this->execGraphQL($gql, ['input' => 1]);
         $this->assertTaskProperties($response['data']['task']);
-        $responseTask = $response['data']['task'];
-        /** @var Task $task */
-        $task = $this->getContainer()->get('doctrine')->getRepository(Task::class)->find(1);
-        $this->assertEquals(1, $task->getId());
-        $this->assertEquals($responseTask['title'], $task->getTitle());
-        $this->assertEquals($responseTask['dateStart'], $task->getDateStart()->format(DateTime::ISO8601));
-        $this->assertEquals($responseTask['dateEnd'], $task->getDateEnd()->format(DateTime::ISO8601));
-        $this->assertEquals($responseTask['taskPriority'], $task->getTaskPriority()->getName());
-        $this->assertEquals($responseTask['taskStatus'], $task->getTaskStatus()->getName());
     }
 
     public function testUpdateTask()
@@ -93,15 +86,7 @@ class TaskCRUDTest extends BaseTestCase
             ],
         ];
         $this->execGraphQL($gql, $input);
-        /** @var Task $task */
-        $task = $this->getContainer()->get('doctrine')->getRepository(Task::class)->find(1);
-        $this->assertNotNull($task);
-        $this->assertEquals(1, $task->getId());
-        $this->assertEquals($newTitle, $task->getTitle());
-        $this->assertEquals($newDateStart, $task->getDateStart()->format(DateTime::ISO8601));
-        $this->assertEquals($newDateEnd, $task->getDateEnd()->format(DateTime::ISO8601));
-        $this->assertEquals($newPriority, $task->getTaskPriority()->getName());
-        $this->assertEquals($newStatus, $task->getTaskStatus()->getName());
+        $this->assertTaskProperties($input['input']);
     }
 
     public function testDeleteTask()
@@ -138,33 +123,6 @@ class TaskCRUDTest extends BaseTestCase
 
         foreach ($tasks as $task) {
             $this->assertTaskProperties($task);
-        }
-    }
-
-    protected function assertTaskProperties(array $task): void
-    {
-        $keys = [
-            'id',
-            'title',
-            'dateStart',
-            'dateEnd',
-            'createdAt',
-            'updatedAt',
-            'taskPriority',
-            'taskStatus',
-        ];
-        foreach ($keys as $key) {
-            $this->assertArrayHasKey($key, $task);
-        }
-
-        $this->assertNotEmpty($task['id']);
-        $this->assertTrue((bool) stristr($task['title'], 'task number'));
-        $this->assertContains($task['taskStatus'], ['scheduled', 'done']);
-        $this->assertContains($task['taskPriority'], ['low', 'normal', 'high']);
-
-        foreach (['createdAt', 'updatedAt', 'dateStart', 'dateEnd'] as $key) {
-            $date = DateTime::createFromFormat(DateTime::ISO8601, $task[$key]);
-            $this->assertInstanceOf(DateTime::class, $date);
         }
     }
 }
