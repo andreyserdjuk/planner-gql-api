@@ -6,6 +6,12 @@ git:
 php:
   - '7.4.1'
 
+# todo disable it after GraphQL bundle config fix
+# see \Overblog\GraphQLBundle\DependencyInjection\Configuration::definitionsSchemaSection() call: ->setDeprecated()
+env:
+  global:
+    - SYMFONY_DEPRECATIONS_HELPER=disabled
+
 sudo: false
 
 before_install:
