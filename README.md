@@ -7,3 +7,4 @@ Local dev env see [planner-dev-env](https://github.com/andreyserdjuk/planner-dev
 ```bash
 php bin/phpunit
 ```
+You can use [GraphQL client (Chrome extension)](https://chrome.google.com/webstore/detail/chromeiql/fkkiamalmpiidkljmicmjfbieiclmeij) to investigate the API.
