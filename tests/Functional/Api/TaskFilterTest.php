@@ -4,7 +4,7 @@ namespace App\Tests\Functional\Api;
 
 class TaskFilterTest extends BaseTestCase
 {
-    use AssertTaskProperties;
+    use AssertTaskPropertiesTrait;
 
     /**
      * @dataProvider statusDataProvider

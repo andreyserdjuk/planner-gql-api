@@ -5,7 +5,7 @@ namespace App\Tests\Functional\Api;
 use App\Entity\Task;
 use DateTime;
 
-trait AssertTaskProperties
+trait AssertTaskPropertiesTrait
 {
     protected function assertTaskProperties(array $task): void
     {

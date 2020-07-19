@@ -7,7 +7,7 @@ use DateTime;
 
 class TaskCRUDTest extends BaseTestCase
 {
-    use AssertTaskProperties;
+    use AssertTaskPropertiesTrait;
 
     public function testCreateTask()
     {
