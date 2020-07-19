@@ -4,9 +4,9 @@ namespace App\Repository;
 
 use App\Core\Repository\TaskRepositoryInterface;
 use App\Entity\Task;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Task|null find($id, $lockMode = null, $lockVersion = null)
@@ -41,8 +41,8 @@ class TaskRepository extends ServiceEntityRepository implements TaskRepositoryIn
             ])) {
                 $dateTimes = [];
                 foreach ($value as $index => $val) {
-                    $val = \DateTime::createFromFormat(\DateTime::ISO8601, $val);
-                    if ($val instanceof \DateTime) {
+                    $val = DateTime::createFromFormat(DateTime::ISO8601, $val);
+                    if ($val instanceof DateTime) {
                         $dateTimes[] = $val;
                     }
                 }
@@ -57,13 +57,13 @@ class TaskRepository extends ServiceEntityRepository implements TaskRepositoryIn
                 )
                     ->setParameter($propertyName, $value[0]);
             } elseif (2 === count($value)) {
-//                $qb->andWhere(
-//                    $qb
-//                        ->expr()
-//                        ->$condition('task.'.$propertyName, ':from'.$propertyName, ':to'.$propertyName)
-//                )
-//                    ->setParameter('from'.$propertyName, $value[0])
-//                    ->setParameter('to'.$propertyName, $value[1]);
+                $qb->andWhere(
+                    $qb
+                        ->expr()
+                        ->between('task.'.$propertyName, ':from'.$propertyName, ':to'.$propertyName)
+                )
+                    ->setParameter('from'.$propertyName, $value[0])
+                    ->setParameter('to'.$propertyName, $value[1]);
             }
         }
 
@@ -73,33 +73,4 @@ class TaskRepository extends ServiceEntityRepository implements TaskRepositoryIn
 
         return $qb->getQuery()->getResult();
     }
-
-    // /**
-    //  * @return Task[] Returns an array of Task objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Task
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
