@@ -31,22 +31,22 @@ class TaskRepository extends ServiceEntityRepository implements TaskRepositoryIn
             ->setFirstResult($offset)
             ->setMaxResults($limit);
 
-        // todo move criteria to builder ORM/ODM
+        $metadata = $this->getClassMetadata();
+
         foreach ($filters as [$propertyName, $condition, $value]) {
-            if (in_array($propertyName, [
-                'createdAt',
-                'updatedAt',
-                'dateStart',
-                'dateEnd',
-            ])) {
-                $dateTimes = [];
-                foreach ($value as $index => $val) {
-                    $val = DateTime::createFromFormat(DateTime::ISO8601, $val);
-                    if ($val instanceof DateTime) {
-                        $dateTimes[] = $val;
+            if ($metadata->hasField($propertyName)) {
+                if ('datetime' === $metadata->getFieldMapping($propertyName)) {
+                    $dateTimes = [];
+                    foreach ($value as $index => $val) {
+                        $val = DateTime::createFromFormat(DateTime::ISO8601, $val);
+                        if ($val instanceof DateTime) {
+                            $dateTimes[] = $val;
+                        }
                     }
+                    $value = $dateTimes;
                 }
-                $value = $dateTimes;
+            } elseif (!$metadata->hasAssociation($propertyName)) {
+                continue;
             }
 
             if (1 === count($value)) {
