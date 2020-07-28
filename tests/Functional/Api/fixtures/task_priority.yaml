@@ -1,4 +1,4 @@
-App\Entity\TaskPriority:
+Planner\TaskORMBundle\Entity\TaskPriority:
   task_priority_low:
     name: 'low'
     label: 'low'

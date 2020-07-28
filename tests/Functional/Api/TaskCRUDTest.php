@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Tests\Functional\Api;
+namespace Planner\Tests\Functional\Api;
 
-use App\Entity\Task;
 use DateTime;
+use Planner\TaskORMBundle\Entity\Task;
+use Planner\TaskORMBundle\Entity\TaskStatus;
 
 class TaskCRUDTest extends BaseTestCase
 {
@@ -27,6 +28,7 @@ class TaskCRUDTest extends BaseTestCase
                 'dateStart' => $dateStart,
                 'dateEnd' => $dateEnd,
                 'taskPriority' => $taskPriority,
+                'taskStatus' => TaskStatus::SCHEDULED,
             ],
         ];
 

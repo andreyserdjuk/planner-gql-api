@@ -15,7 +15,8 @@
         "symfony/orm-pack": "^1.0",
         "symfony/serializer": "5.1.*",
         "symfony/validator": "5.1.*",
-        "symfony/yaml": "5.1.*"
+        "symfony/yaml": "5.1.*",
+        "ext-json": "*"
     },
     "require-dev": {
         "ext-json": "*",
@@ -37,12 +38,14 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Planner\\": "src/",
+            "Planner\\Tests\\": "tests/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Planner\\": "src/",
+            "Planner\\Tests\\": "tests/"
         }
     },
     "replace": {

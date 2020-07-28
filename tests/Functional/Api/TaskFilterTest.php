@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Functional\Api;
+namespace Planner\Tests\Functional\Api;
 
 class TaskFilterTest extends BaseTestCase
 {

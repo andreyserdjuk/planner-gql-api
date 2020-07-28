@@ -1,4 +1,4 @@
-App\Entity\Task:
+Planner\TaskORMBundle\Entity\Task:
   task{1..20}:
     title: 'task number <current()>'
     dateStart: '<dateTimeBetween("-3 days", "now")>'

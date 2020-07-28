@@ -33,3 +33,6 @@ Query:
       task_priorities:
         type: '[TaskPriority]'
         resolve: "@=resolver('find_task_priorities')"
+      task_properties:
+        type: "[TaskProperty]"
+        resolve: "@=resolver('find_task_properties')"

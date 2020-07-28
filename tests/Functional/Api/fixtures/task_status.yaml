@@ -1,4 +1,4 @@
-App\Entity\TaskStatus:
+Planner\TaskORMBundle\Entity\TaskStatus:
   task_status_scheduled:
     name: 'scheduled'
     label: 'scheduled'

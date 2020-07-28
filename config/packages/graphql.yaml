@@ -11,5 +11,5 @@ overblog_graphql:
                     suffix: null
                 -
                     type: annotation
-                    dir: "%kernel.project_dir%/src/GraphQL/Type"
+                    dir: "%kernel.project_dir%/src/TaskCoreBundle/GraphQL/Type"
                     suffix: null

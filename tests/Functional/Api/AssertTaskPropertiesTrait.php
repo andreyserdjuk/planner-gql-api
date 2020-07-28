@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Functional\Api;
+namespace Planner\Tests\Functional\Api;
 
-use App\Entity\Task;
 use DateTime;
+use Planner\TaskORMBundle\Entity\Task;
 
 trait AssertTaskPropertiesTrait
 {
