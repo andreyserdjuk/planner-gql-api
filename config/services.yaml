@@ -15,7 +15,11 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     Planner\TaskCoreBundle\:
         resource: '../src/TaskCoreBundle/*'
-        exclude: '../src/TaskCoreBundle/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/TaskCoreBundle/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,GraphQL}'
+
+    Planner\TaskCoreBundle\GraphQL\:
+        resource: '../src/TaskCoreBundle/GraphQL/*'
+        exclude: '../src/TaskCoreBundle/GraphQL/Type'
 
     Planner\TaskORMBundle\:
         resource: '../src/TaskORMBundle/*'
@@ -39,7 +43,3 @@ services:
     Planner\TaskCoreBundle\GraphQL\Type\TaskStatusType:
         tags:
             - { name: overblog_graphql.type, alias: TaskStatus }
-
-    Planner\TaskCoreBundle\GraphQL\Type\DateTimeType:
-        tags:
-            - { name: overblog_graphql.type, alias: DateTime }

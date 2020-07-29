@@ -1,12 +1,4 @@
 services:
-  Planner\TaskCoreBundle\GraphQL\Type\TaskPriorityType:
-    tags:
-      - { name: overblog_graphql.type, alias: TaskPriority }
-
-  Planner\TaskCoreBundle\GraphQL\Type\TaskStatusType:
-    tags:
-      - { name: overblog_graphql.type, alias: TaskStatus }
-
   Planner\TaskCoreBundle\GraphQL\Type\DateTimeType:
     tags:
       - { name: overblog_graphql.type, alias: DateTime }
