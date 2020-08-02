@@ -4,7 +4,6 @@ namespace Planner\Tests\Functional\Api;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
-use Planner\TaskCoreBundle\GraphQL\Type\TaskPriorityType;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -36,7 +35,6 @@ abstract class BaseTestCase extends WebTestCase
             'variables' => $variables,
         ]));
         $rawResponse = self::$client->getResponse()->getContent();
-self::$client->getContainer()->get(TaskPriorityType::class);
         $response = json_decode($rawResponse, true);
         $this->assertArrayHasKey('data', $response);
 
