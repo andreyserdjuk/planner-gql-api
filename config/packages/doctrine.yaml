@@ -9,15 +9,3 @@ doctrine:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
-        mappings:
-            Planner:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/TaskORMBundle/Entity'
-                prefix: 'Planner\TaskORMBundle\Entity'
-                alias: PlannerTaskORM
-        resolve_target_entities:
-            Planner\TaskCoreBundle\Core\Model\TaskInterface: Planner\TaskORMBundle\Entity\Task
-            Planner\TaskCoreBundle\Core\Model\TaskPriorityInterface: Planner\TaskORMBundle\Entity\TaskPriority
-            Planner\TaskCoreBundle\Core\Model\TaskPropertyInterface: Planner\TaskORMBundle\Entity\TaskProperty
-            Planner\TaskCoreBundle\Core\Model\TaskStatusInterface: Planner\TaskORMBundle\Entity\TaskStatus

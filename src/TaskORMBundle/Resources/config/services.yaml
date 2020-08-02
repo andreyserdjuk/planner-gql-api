@@ -1,0 +1,24 @@
+services:
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  Doctrine\Persistence\ObjectManager:
+    alias: Doctrine\ORM\EntityManagerInterface
+
+  Planner\TaskORMBundle\Repository\TaskPriorityRepository: ~
+  Planner\TaskORMBundle\Repository\TaskPropertyRepository: ~
+  Planner\TaskORMBundle\Repository\TaskStatusRepository: ~
+  Planner\TaskORMBundle\Repository\TaskRepository: ~
+
+  Planner\TaskCoreBundle\Core\Repository\TaskPriorityRepositoryInterface:
+    alias: Planner\TaskORMBundle\Repository\TaskPriorityRepository
+
+  Planner\TaskCoreBundle\Core\Repository\TaskPropertyRepositoryInterface:
+    alias: Planner\TaskORMBundle\Repository\TaskPropertyRepository
+
+  Planner\TaskCoreBundle\Core\Repository\TaskStatusRepositoryInterface:
+    alias: Planner\TaskORMBundle\Repository\TaskStatusRepository
+
+  Planner\TaskCoreBundle\Core\Repository\TaskRepositoryInterface:
+    alias: Planner\TaskORMBundle\Repository\TaskRepository

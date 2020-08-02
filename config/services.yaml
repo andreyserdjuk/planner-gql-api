@@ -10,36 +10,3 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
-    Planner\TaskCoreBundle\:
-        resource: '../src/TaskCoreBundle/*'
-        exclude: '../src/TaskCoreBundle/{DependencyInjection,Entity,Migrations,Tests,Kernel.php,GraphQL}'
-
-    Planner\TaskCoreBundle\GraphQL\:
-        resource: '../src/TaskCoreBundle/GraphQL/*'
-        exclude: '../src/TaskCoreBundle/GraphQL/Type'
-
-    Planner\TaskORMBundle\:
-        resource: '../src/TaskORMBundle/*'
-        exclude: '../src/TaskORMBundle/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
-
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
-#    App\Controller\:
-#        resource: '../src/Controller'
-#        tags: ['controller.service_arguments']
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-
-    Doctrine\Persistence\ObjectManager: '@doctrine.orm.default_entity_manager'
-
-    Planner\TaskCoreBundle\GraphQL\Type\TaskPriorityType:
-        tags:
-            - { name: overblog_graphql.type, alias: TaskPriority }
-
-    Planner\TaskCoreBundle\GraphQL\Type\TaskStatusType:
-        tags:
-            - { name: overblog_graphql.type, alias: TaskStatus }

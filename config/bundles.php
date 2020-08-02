@@ -14,5 +14,6 @@ return [
     Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
 
+    Planner\TaskORMBundle\TaskORMBundle::class => ['all' => true],
     Planner\TaskCoreBundle\TaskCoreBundle::class => ['all' => true],
 ];
