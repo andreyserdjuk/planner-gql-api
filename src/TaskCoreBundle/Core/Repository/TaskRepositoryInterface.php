@@ -18,7 +18,6 @@ interface TaskRepositoryInterface
      */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null);
 
-    // todo criteria parser to ORM/ODM API
     public function getPagedByCriteria(
         array $filters,
         array $sortings,

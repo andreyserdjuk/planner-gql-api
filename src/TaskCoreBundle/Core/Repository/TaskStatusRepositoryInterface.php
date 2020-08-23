@@ -2,12 +2,12 @@
 
 namespace Planner\TaskCoreBundle\Core\Repository;
 
-use Planner\TaskCoreBundle\Entity\TaskStatus;
+use Planner\TaskCoreBundle\Core\Model\TaskStatusInterface;
 
 interface TaskStatusRepositoryInterface
 {
     /**
-     * @return TaskStatus[]
+     * @return TaskStatusInterface[]
      */
     public function findAll();
 }
