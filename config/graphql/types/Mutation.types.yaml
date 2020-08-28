@@ -22,3 +22,10 @@ Mutation:
         args:
           input:
             type: ID!
+      createTaskProperty:
+        type: ID!
+        resolve: "@=mutation('create_task_property', arguments({input: 'CreateTaskPropertyInput'}, args))"
+        args:
+          input:
+            type: CreateTaskPropertyInput!
+            validation: cascade

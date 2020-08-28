@@ -36,7 +36,7 @@ abstract class BaseTestCase extends WebTestCase
         ]));
         $rawResponse = self::$client->getResponse()->getContent();
         $response = json_decode($rawResponse, true);
-        $this->assertArrayHasKey('data', $response);
+        $this->assertArrayHasKey('data', $response, $rawResponse);
 
         return $response;
     }
