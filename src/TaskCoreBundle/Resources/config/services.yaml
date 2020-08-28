@@ -15,9 +15,14 @@ services:
     tags:
       - { name: overblog_graphql.type, alias: TaskStatus }
 
+  Planner\TaskCoreBundle\GraphQL\Type\TaskIdentityType:
+    tags:
+      - { name: overblog_graphql.type, alias: TaskIdentity }
+
   Planner\TaskCoreBundle\GraphQL\Resolver\TaskPriorityResolver: ~
   Planner\TaskCoreBundle\GraphQL\Resolver\TaskPropertyResolver: ~
   Planner\TaskCoreBundle\GraphQL\Resolver\TaskResolver: ~
   Planner\TaskCoreBundle\GraphQL\Resolver\TaskStatusResolver: ~
 
   Planner\TaskCoreBundle\GraphQL\Mutation\TaskMutation: ~
+  Planner\TaskCoreBundle\GraphQL\Mutation\TaskPropertyMutation: ~

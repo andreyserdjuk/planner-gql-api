@@ -2,6 +2,7 @@
 
 namespace Planner\TaskORMBundle\Entity;
 
+use Planner\TaskCoreBundle\Core\Model\TaskInterface;
 use Planner\TaskCoreBundle\Core\Model\TaskPropertyInterface;
 use Planner\TaskORMBundle\Repository\TaskPropertyRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -27,7 +28,7 @@ class TaskProperty implements TaskPropertyInterface
      * @ORM\ManyToOne(targetEntity=Task::class, inversedBy="taskProperties")
      * @ORM\JoinColumn(nullable=false)
      */
-    private Task $task;
+    private TaskInterface $task;
 
     /**
      * @ORM\Column(type="string", length=2056)
@@ -51,12 +52,12 @@ class TaskProperty implements TaskPropertyInterface
         return $this;
     }
 
-    public function getTask(): Task
+    public function getTask(): TaskInterface
     {
         return $this->task;
     }
 
-    public function setTask(Task $task): self
+    public function setTask(TaskInterface $task): self
     {
         $this->task = $task;
 
