@@ -18,6 +18,7 @@ abstract class BaseTestCase extends WebTestCase
         self::$client = self::createClient();
         $this->loadFixtureFiles([
             __DIR__ . '/fixtures/task_priority.yaml',
+            __DIR__ . '/fixtures/task_property.yaml',
             __DIR__ . '/fixtures/task_status.yaml',
             __DIR__ . '/fixtures/task.yaml',
         ],

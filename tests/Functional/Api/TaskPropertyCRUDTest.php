@@ -2,9 +2,9 @@
 
 namespace Planner\Tests\Functional\Api;
 
+use Doctrine\Persistence\ManagerRegistry;
+use Planner\TaskCoreBundle\Core\Model\TaskInterface;
 use Planner\TaskCoreBundle\Core\Model\TaskPropertyInterface;
-use Planner\TaskORMBundle\Entity\Task;
-use Planner\TaskORMBundle\Entity\TaskProperty;
 
 class TaskPropertyCRUDTest extends BaseTestCase
 {
@@ -18,14 +18,14 @@ class TaskPropertyCRUDTest extends BaseTestCase
 
         $managerRegistry = $this->getContainer()->get('doctrine');
 
-        /** @var Task $task */
-        $task = $managerRegistry->getRepository(Task::class)->findOneBy([]);
+        /** @var TaskInterface $task */
+        $task = $managerRegistry->getRepository(TaskInterface::class)->findOneBy([]);
         $content = 'Here is task description.';
         $type = 'section_description';
 
         $input = [
             'input' => [
-                'task' => ['id' => $task->getId()],
+                'task' => $task->getId(),
                 'content' => $content,
                 'type' => $type,
             ],
@@ -34,10 +34,40 @@ class TaskPropertyCRUDTest extends BaseTestCase
         $response = $this->execGraphQL($gql, $input);
         $this->assertNotEmpty($response['data']['createTaskProperty']);
         $taskPropertyId = $response['data']['createTaskProperty'];
+
         /** @var TaskPropertyInterface $taskProperty */
-        $taskProperty = $managerRegistry->getRepository(TaskProperty::class)->find($taskPropertyId);
+        $taskProperty = $managerRegistry->getRepository(TaskPropertyInterface::class)->find($taskPropertyId);
         $this->assertEquals($content, $taskProperty->getContent());
         $this->assertEquals($type, $taskProperty->getType());
         $this->assertEquals($task, $taskProperty->getTask());
+    }
+
+    public function testUpdateTaskProperty()
+    {
+        $gql = <<<'GQL'
+            mutation updateTaskProperty($input: UpdateTaskPropertyInput!) {
+              updateTaskProperty(input: $input)
+            }
+            GQL;
+
+        /** @var ManagerRegistry $managerRegistry */
+        $managerRegistry = $this->getContainer()->get('doctrine');
+
+        /** @var TaskPropertyInterface $taskProperty */
+        $taskProperty = $managerRegistry->getRepository(TaskPropertyInterface::class)->findOneBy([
+            'type' => 'description',
+        ]);
+
+        $content = 'updated description';
+        $input = [
+            'input' => [
+                'id' => $taskProperty->getId(),
+                'content' => $content,
+            ],
+        ];
+        $this->execGraphQL($gql, $input);
+        $managerRegistry->getManager()->refresh($taskProperty);
+
+        $this->assertEquals($content, $taskProperty->getContent());
     }
 }

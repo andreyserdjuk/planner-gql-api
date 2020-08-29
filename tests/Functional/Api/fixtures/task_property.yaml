@@ -1,0 +1,5 @@
+Planner\TaskORMBundle\Entity\TaskProperty:
+  description_1:
+    type: 'description'
+    task: '@task1'
+    content: 'first task description'

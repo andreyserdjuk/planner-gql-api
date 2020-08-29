@@ -29,3 +29,10 @@ Mutation:
           input:
             type: CreateTaskPropertyInput!
             validation: cascade
+      updateTaskProperty:
+        type: Boolean!
+        resolve: "@=mutation('update_task_property', arguments({input: 'UpdateTaskPropertyInput'}, args))"
+        args:
+          input:
+            type: UpdateTaskPropertyInput!
+            validation: cascade
