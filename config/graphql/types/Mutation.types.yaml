@@ -36,3 +36,9 @@ Mutation:
           input:
             type: UpdateTaskPropertyInput!
             validation: cascade
+      deleteTaskProperty:
+        type: Boolean!
+        resolve: "@=mutation('delete_task_property', arguments({input: 'ID!'}, args))"
+        args:
+          input:
+            type: ID!

@@ -47,11 +47,26 @@ class TaskPropertyMutation implements MutationInterface, AliasedInterface
         return true;
     }
 
+    public function deleteTaskProperty($id): bool
+    {
+        $taskProperty = $this->om->find(TaskPropertyInterface::class, $id);
+
+        if (!$taskProperty) {
+            throw new UserError('TaskProperty not found.');
+        }
+
+        $this->om->remove($taskProperty);
+        $this->om->flush();
+
+        return true;
+    }
+
     public static function getAliases(): array
     {
         return [
             'createTaskProperty' => 'create_task_property',
             'updateTaskProperty' => 'update_task_property',
+            'deleteTaskProperty' => 'delete_task_property',
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace Planner\Tests\Functional\Api;
 use Doctrine\Persistence\ManagerRegistry;
 use Planner\TaskCoreBundle\Core\Model\TaskInterface;
 use Planner\TaskCoreBundle\Core\Model\TaskPropertyInterface;
+use Planner\TaskCoreBundle\Core\Repository\TaskPropertyRepositoryInterface;
 
 class TaskPropertyCRUDTest extends BaseTestCase
 {
@@ -65,9 +66,26 @@ class TaskPropertyCRUDTest extends BaseTestCase
                 'content' => $content,
             ],
         ];
-        $this->execGraphQL($gql, $input);
+        $response = $this->execGraphQL($gql, $input);
+        $this->assertTrue($response['data']['updateTaskProperty']);
         $managerRegistry->getManager()->refresh($taskProperty);
 
         $this->assertEquals($content, $taskProperty->getContent());
+    }
+
+    public function testDeleteTaskProperty()
+    {
+        /** @var TaskPropertyRepositoryInterface $repository */
+        $repository = $this->getContainer()->get('doctrine')->getRepository(TaskPropertyInterface::class);
+        $this->assertNotNull($repository->find(1));
+
+        $gql = <<<'GQL'
+            mutation deleteTaskProperty($input: ID!) {
+              deleteTaskProperty(input: $input)
+            }
+            GQL;
+        $response = $this->execGraphQL($gql, ['input' => 1]);
+        $this->assertTrue($response['data']['deleteTaskProperty']);
+        $this->assertNull($repository->find(1));
     }
 }
