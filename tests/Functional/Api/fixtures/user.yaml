@@ -1,0 +1,4 @@
+Planner\TaskORMBundle\Entity\User:
+  admin:
+    email: 'admin@planner'
+    password: '\$argon2id\$v=19\$m=65536,t=4,p=1\$iLCN80/tyWCh4DqOKPpggA\$bSSG/NsPwGmFrunKJiwCTXRFOnYbE3jTBVLREmgTGpI'

@@ -10,6 +10,29 @@ class TaskCRUDTest extends BaseTestCase
 {
     use AssertTaskPropertiesTrait;
 
+    public function testLogin()
+    {
+        $this->markTestSkipped('todo auth');
+        static::$client->request(
+            'POST',
+            '/login',
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            json_encode([
+                'security' => [
+                    'credentials' => [
+                        'login' => 'admin@planner',
+                        'password' => 'demo',
+                    ],
+                ],
+            ])
+        );
+
+        $rawResponse = self::$client->getResponse()->getContent();
+        $response = json_decode($rawResponse, true);
+    }
+
     public function testCreateTask()
     {
         $gql = <<<'GQL'

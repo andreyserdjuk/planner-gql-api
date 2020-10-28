@@ -21,6 +21,7 @@ abstract class BaseTestCase extends WebTestCase
             __DIR__ . '/fixtures/task_property.yaml',
             __DIR__ . '/fixtures/task_status.yaml',
             __DIR__ . '/fixtures/task.yaml',
+            __DIR__ . '/fixtures/user.yaml',
         ],
             false,
             null,
