@@ -11,11 +11,13 @@ use Planner\TaskORMBundle\Entity\Task;
 use Planner\TaskORMBundle\Entity\TaskPriority;
 use Planner\TaskORMBundle\Entity\TaskProperty;
 use Planner\TaskORMBundle\Entity\TaskStatus;
+use Planner\TaskORMBundle\Entity\User;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class TaskORMExtension extends Extension implements PrependExtensionInterface
 {
@@ -31,6 +33,11 @@ class TaskORMExtension extends Extension implements PrependExtensionInterface
         );
 
         $loader->load('services.yaml');
+
+        $env = $container->getParameter('kernel.environment');
+        if ($env !== 'prod') {
+            $loader->load('services.dev.yaml');
+        }
     }
 
     public function prepend(ContainerBuilder $container)
@@ -47,6 +54,7 @@ class TaskORMExtension extends Extension implements PrependExtensionInterface
         $doctrineConfig['orm']['resolve_target_entities'][TaskInterface::class] = Task::class;
         $doctrineConfig['orm']['resolve_target_entities'][TaskPriorityInterface::class] = TaskPriority::class;
         $doctrineConfig['orm']['resolve_target_entities'][TaskPropertyInterface::class] = TaskProperty::class;
+        $doctrineConfig['orm']['resolve_target_entities'][UserInterface::class] = User::class;
         $doctrineConfig['orm']['resolve_target_entities'][TaskStatusInterface::class] = TaskStatus::class;
 
         $container->prependExtensionConfig('doctrine', $doctrineConfig);

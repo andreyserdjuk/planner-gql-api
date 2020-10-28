@@ -27,3 +27,5 @@ services:
   Planner\TaskCoreBundle\GraphQL\Mutation\TaskMutation: ~
   Planner\TaskCoreBundle\GraphQL\Mutation\TaskPropertyMutation: ~
   Planner\TaskCoreBundle\GraphQL\Mutation\TaskStatusMutation: ~
+
+  Planner\TaskCoreBundle\Controller\SecurityController: ~

@@ -3,6 +3,9 @@ services:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+  Planner\TaskORMBundle\DataFixtures\:
+    resource: '../../DataFixtures/*'
+
   Doctrine\Persistence\ObjectManager:
     alias: Doctrine\ORM\EntityManagerInterface
 
@@ -10,6 +13,7 @@ services:
   Planner\TaskORMBundle\Repository\TaskPropertyRepository: ~
   Planner\TaskORMBundle\Repository\TaskStatusRepository: ~
   Planner\TaskORMBundle\Repository\TaskRepository: ~
+  Planner\TaskORMBundle\Repository\UserRepository: ~
 
   Planner\TaskCoreBundle\Core\Repository\TaskPriorityRepositoryInterface:
     alias: Planner\TaskORMBundle\Repository\TaskPriorityRepository

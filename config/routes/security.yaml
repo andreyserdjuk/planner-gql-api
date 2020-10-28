@@ -1,0 +1,3 @@
+security_controller:
+  resource: Planner\TaskCoreBundle\Controller\SecurityController
+  type: annotation

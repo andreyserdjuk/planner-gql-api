@@ -15,4 +15,5 @@ return [
     Planner\TaskORMBundle\TaskORMBundle::class => ['all' => true],
     Planner\TaskCoreBundle\TaskCoreBundle::class => ['all' => true],
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
+    Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
 ];
